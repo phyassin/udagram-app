@@ -26,4 +26,4 @@ export class FeedProviderService {
     return res;
   }
 
-};
+}
