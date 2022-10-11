@@ -13,21 +13,31 @@ jobs:
       - node/install:
           node-version: '14.15'
       - checkout
+      - aws-cli/setup
       - run:
           name: Install Front-End Dependencies
-          command: npm run frontend:install
+          command: |
+            echo "NODE --version" 
+            echo $(node --version)
+            echo "NPM --version" 
+            echo $(npm --version)
+            npm run frontend:install
       - run:
           name: Install API Dependencies
-          command: npm run api:install
+          command: |
+          npm run api:install
       - run:
           name: Front-End Lint
-          command: npm run frontend:lint
+          command: |
+          npm run frontend:lint
       - run:
           name: Front-End Build
-          command: npm run frontend:build
+          command: |
+          npm run frontend:build
       - run:
           name: API Build
-          command: npm run api:build
+          command: |
+          npm run api:build
   deploy:
     docker:
       - image: 'cimg/base:stable'
@@ -39,10 +49,12 @@ jobs:
       - checkout
       - run:
           name: Deploy API
-          command: npm run api:deploy
+          command: |
+          npm run api:deploy
       - run:
           name: Deploy Front-End
-          command: npm run frontend:deploy
+          command: |
+          npm run frontend:deploy
 
 workflows:
   udagram:
