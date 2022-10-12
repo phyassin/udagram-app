@@ -52,7 +52,15 @@ jobs:
           command: |
             npm run api:deploy
       - run:
-          name: Front-End Build Again
+          name: Install Front-End Dependencies
+          command: |
+            echo "NODE --version" 
+            echo $(node --version)
+            echo "NPM --version" 
+            echo $(npm --version)
+            npm run frontend:install
+      - run:
+          name: Front-End Build
           command: |
             npm run frontend:build
       - run:
